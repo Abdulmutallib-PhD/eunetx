@@ -70,7 +70,7 @@ Research Baseline Models:
 
 ---
 
-## 👩🏽‍💻 Author
+## Author
 
 **Alhassan Abdulmutallib**  
 PhD Student in Computer Science  
