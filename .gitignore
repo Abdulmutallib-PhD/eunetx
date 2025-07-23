@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
+venv/
+env/
+*.egg-info/
+.eggs/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Datasets & outputs
+dataset/
+collections/
+predictions/
+*.npy
+*.npz
+*.h5
+*.pt
+*.pth
+
+# Logs
+*.log
+
+# DICOM & medical images
+*.dcm
+*.nii
+*.nii.gz
+
+# IDEs/editors
+.vscode/
+.idea/
+*.swp
+
+# OS generated

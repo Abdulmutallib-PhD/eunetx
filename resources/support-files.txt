@@ -1,0 +1,3 @@
+ACTIVATE ENV ON MAC
+
+source myenv/bin/activate
