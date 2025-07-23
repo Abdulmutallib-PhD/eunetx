@@ -20,7 +20,7 @@ This project addresses these challenges by automating segmentation using a robus
 
 - Custom CNN architecture based on UNet++
 - Extended skip connections & lightweight feature fusion
-- Trained on **16,000 CT datasets**
+- Trained on **16,000 CT datasets. NOTE, DATASET CAN BE GIVEN ON REQUEST DUE TO ETHICAL CONSIDERATION**
 - Outperforms baseline models in DSC, IoU, and computational efficiency
 - Supports stratified k-fold cross-validation
 
