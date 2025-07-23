@@ -60,7 +60,7 @@ Segmentation results and metrics are saved in the results/ folder.
 
 ## References
 
-Key references:
+Research Baseline Models:
 
 - Ronneberger et al., 2015 — *U-Net*
 - Zhou et al., 2018 — *UNet++*
