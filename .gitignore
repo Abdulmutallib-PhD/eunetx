@@ -17,7 +17,7 @@ env/
 # Datasets & outputs
 dataset/
 # collections/
-training/
+# training/
 *.npy
 *.npz
 *.h5
