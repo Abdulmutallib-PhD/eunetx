@@ -73,7 +73,7 @@ Research Baseline Models:
 ## 👩🏽‍💻 Author
 
 **Alhassan Abdulmutallib**  
-Doctor of Philosophy (PhD), Computer Science  
+PhD Student in Computer Science  
 Department of Computer Science  
 Baze University, Abuja, Nigeria  
 
