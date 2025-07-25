@@ -1,0 +1,2 @@
+Model,Dice Similarity Coeff. (DSC),HD95 (mm),Jaccard Index (IoU)
+UNetX (Proposed),100.0,89.83,78.72

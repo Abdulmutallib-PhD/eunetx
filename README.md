@@ -68,7 +68,7 @@ Research Baseline Models:
 - Zhou et al., 2018 — *UNet++*
 - Liao et al., 2022 — *Swin-PANet*
 - Maria et al., 2021 — *MedT*
-- *This thesis*: **Development and Evaluation of a Custom Deep Learning Architecture (UNetX) for Automated Brain Tumor Segmentation in CT Medical Images** by Alhassan Abdulmutallib (2025)
+- *Thesis title*: **A Custom Deep Learning Architecture (UNetX) for Automated Brain Tumor Segmentation in CT Medical Images** by Alhassan Abdulmutallib (2025)
 
 ---
 
