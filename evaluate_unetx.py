@@ -61,7 +61,7 @@ def evaluate_full_metrics(model, loader):
     }
 
     os.makedirs("results", exist_ok=True)
-    result_path = "results/table9_unetx_final_performance.csv"
+    result_path = "results/unetx_final_performance.csv"
     metrics_path = "results/unetx_detailed_evaluation.csv"
 
     df = pd.DataFrame([{"Model": "UNetX (Proposed)", **metrics}])
