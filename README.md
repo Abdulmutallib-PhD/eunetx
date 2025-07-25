@@ -52,6 +52,8 @@ This project addresses these challenges by automating segmentation using a robus
 Install dependencies:
 ```bash
 pip install -r requirements.txt
+python train_unetx.py
+python evaluate_unetx.py
 
 Visualization
 Segmentation results and metrics are saved in the results/ folder.
