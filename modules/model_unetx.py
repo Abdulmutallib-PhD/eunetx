@@ -263,4 +263,5 @@ def show_predictions(model, loader, num=2):
 
 show_predictions(model, val_loader)
 
-print("UNetX DICOM Pipeline Complete.")
+print("UNetX DICOM Pipeline Completed.")
+print("Initializing the next stage.")

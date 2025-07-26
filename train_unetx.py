@@ -4,10 +4,10 @@ from torch import optim
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 
-from dataset_loader import DicomDataset
-from model_unetx import UNetX
-from utils import dice_loss
-from evaluate_unetx import evaluate_full_metrics
+from modules.dataset_loader import DicomDataset
+from modules.model_unetx import UNetX
+from utils.utils import dice_loss
+from modules.evaluate_unetx import evaluate_full_metrics
 
 # Setup
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -48,9 +48,10 @@ for epoch in range(epochs):
 # Plot
 plt.plot(train_losses, label="Train Loss")
 plt.plot(val_losses, label="Val Loss")
-plt.legend(); plt.title("Training Curve"); plt.show()
+plt.legend(); plt.title("Training Curve"); plt.xlabel("Epoch"); plt.ylabel("Loss"); plt.grid(True)
+plt.savefig("results/unetx_training_curve.png")
+plt.close()
 
 # Evaluate
-# results, csv_path = evaluate_full_metrics(model, val_loader)
 metrics, evaluation_metrics, result_path, metrics_path = evaluate_full_metrics(model, val_loader)
 print("Final evaluation results saved to:", evaluation_metrics)
