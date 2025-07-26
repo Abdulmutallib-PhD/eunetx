@@ -1,3 +1,5 @@
 ACTIVATE ENV ON MAC
 
 source myenv/bin/activate
+
+pip freeze > requirements.txt
