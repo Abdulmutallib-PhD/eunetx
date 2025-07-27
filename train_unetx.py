@@ -11,7 +11,8 @@ from modules.evaluate_unetx import evaluate_full_metrics
 
 # Setup
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-dataset = DicomDataset('data/external_dataset/images', 'data/external_dataset/masks')
+dataset = DicomDataset('dataset/nonannotated/images', 'dataset/annotated/images')
+
 train_len = int(0.8 * len(dataset))
 train_ds, val_ds = random_split(dataset, [train_len, len(dataset) - train_len])
 train_loader = DataLoader(train_ds, batch_size=4, shuffle=True)
