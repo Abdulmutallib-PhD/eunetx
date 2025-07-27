@@ -137,6 +137,10 @@ class DicomDataset(Dataset):
 non_annotated_dir = 'dataset/nonannotated/images'  # pls adjust to your path
 annotated_dir = 'dataset/annotated/images'  # pls adjust to your path
 
+
+# pathnon_annotated_dir = '../dataset/nonannotated/images'
+# annotated_dir = '../dataset/annotated/images'
+
 dataset = DicomDataset(non_annotated_dir, annotated_dir)
 train_size = int(0.8 * len(dataset))
 val_size = len(dataset) - train_size
