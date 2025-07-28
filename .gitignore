@@ -16,6 +16,12 @@ env/
 
 # Datasets & outputs
 dataset/
+collection/
+data/
+csv/
+plots/
+miscellaneous/
+
 # collections/
 # training/
 *.npy

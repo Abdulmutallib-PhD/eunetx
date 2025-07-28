@@ -134,8 +134,8 @@ class DicomDataset(Dataset):
         return img, mask
 
 # Pls note: You must specify your dataset, where the code based location is datasets folder
-non_annotated_dir = 'dataset/nonannotated/images'  # pls adjust to your path
-annotated_dir = 'dataset/annotated/images'  # pls adjust to your path
+non_annotated_dir = 'collection/nonannotated/images'  # pls adjust to your path
+annotated_dir = 'collection/annotated/images'  # pls adjust to your path
 
 
 # pathnon_annotated_dir = '../dataset/nonannotated/images'
@@ -149,7 +149,7 @@ train_ds, val_ds = random_split(dataset, [train_size, val_size])
 train_loader = DataLoader(train_ds, batch_size=4, shuffle=True)
 val_loader = DataLoader(val_ds, batch_size=4)
 
-print(f"Loaded {len(train_ds)} training and {len(val_ds)} validation samples.")
+print(f"Sample loaded")
 
 # ==============================================================
 # Loss and Metrics
@@ -192,7 +192,7 @@ def validate(model, loader, criterion):
 # ==============================================================
 model = UNetX().to(device)
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
-epochs = 5
+epochs = 2
 
 train_losses, val_losses = [], []
 for epoch in range(epochs):
@@ -200,18 +200,7 @@ for epoch in range(epochs):
     v_loss = validate(model, val_loader, dice_loss)
     train_losses.append(t_loss)
     val_losses.append(v_loss)
-    print(f"Epoch {epoch+1}/{epochs} - Train Loss: {t_loss:.4f}, Val Loss: {v_loss:.4f}")
-
-# ==============================================================
-# Results Presentation
-# ==============================================================
-plt.plot(train_losses, label='Train Loss')
-plt.plot(val_losses, label='Val Loss')
-plt.xlabel("Epoch")
-plt.ylabel("Dice Loss")
-plt.legend()
-plt.title("UNetX Training & Validation Loss")
-plt.show()
+    print(f"Validation Epoch {epoch+1}/{epochs}")
 
 # ==============================================================
 # Evaluate DSC, Sensitivity & Specificity
@@ -236,11 +225,6 @@ def evaluate_metrics(model, loader):
         sens.append(sensitivity.item())
         specs.append(specificity.item())
 
-    print(f"Mean DSC: {np.mean(dscs):.4f}")
-    print(f"Mean Sensitivity: {np.mean(sens):.4f}")
-    print(f"Mean Specificity: {np.mean(specs):.4f}")
-
-evaluate_metrics(model, val_loader)
 
 # ==============================================================
 # Visualize Predictions
@@ -253,19 +237,6 @@ def show_predictions(model, loader, num=2):
             x,y = x.to(device), y.to(device)
             out = (model(x) > 0.5).float()
 
-            plt.figure(figsize=(12,4))
-            plt.subplot(1,3,1)
-            plt.imshow(x[0,0].cpu(), cmap='gray')
-            plt.title("Input Image")
-            plt.subplot(1,3,2)
-            plt.imshow(y[0,0].cpu(), cmap='gray')
-            plt.title("Ground Truth")
-            plt.subplot(1,3,3)
-            plt.imshow(out[0,0].cpu(), cmap='gray')
-            plt.title("Prediction")
-            plt.show()
-
-show_predictions(model, val_loader)
 
 print("UNetX DICOM Pipeline Completed.")
 print("Initializing the next stage.")

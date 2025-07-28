@@ -47,32 +47,3 @@ def evaluate_full_metrics(model, loader):
                 hd95s.append(hd95_val)
                 sens.append(sensitivity)
                 specs.append(specificity)
-
-    metrics = {
-        "Dice Similarity Coeff. (DSC)": round(np.mean(dscs) * 100, 2),
-        "HD95 (mm)": round(np.nanmean(hd95s), 2),
-        "Jaccard Index (IoU)": round(np.mean(jaccards) * 100, 2)
-    }
-
-    evaluation_metrics = {
-        "Mean DSC": round(np.mean(dscs), 4),
-        "Mean Sensitivity": round(np.mean(sens), 4),
-        "Mean Specificity": round(np.mean(specs), 4)
-    }
-
-    os.makedirs("results", exist_ok=True)
-    result_path = "results/unetx_final_performance.csv"
-    metrics_path = "results/unetx_detailed_evaluation.csv"
-
-    df = pd.DataFrame([{"Model": "UNetX (Proposed)", **metrics}])
-    df.to_csv(result_path, index=False)
-
-    df_eval = pd.DataFrame([evaluation_metrics])
-    df_eval.to_csv(metrics_path, index=False)
-
-    print("Evaluation Results Saved to:", result_path)
-    print("Detailed Metrics Saved to:", metrics_path)
-    print(metrics)
-    print(evaluation_metrics)
-
-    return metrics, evaluation_metrics, result_path, metrics_path
