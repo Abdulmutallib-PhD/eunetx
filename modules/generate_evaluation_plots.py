@@ -1,4 +1,4 @@
-
+import csv
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -83,6 +83,64 @@ def generate_plots():
     plt.tight_layout()
     plt.savefig("plots/plot_training_loss.png")
     plt.close()
+
+    # ------------------------
+    # Real-time Metrics Logger
+    # ------------------------
+    def log_realtime_metrics(epoch, dsc, iou, hd95, sensitivity, specificity, ppv, npv):
+        os.makedirs("results", exist_ok=True)
+        log_path = "csv/unetx_real_time_metrics.csv"
+        file_exists = os.path.isfile(log_path)
+
+        with open(log_path, mode='a', newline='') as file:
+            writer = csv.writer(file)
+            if not file_exists:
+                writer.writerow(["Epoch", "DSC", "IoU", "HD95", "Sensitivity", "Specificity", "PPV", "NPV"])
+            writer.writerow([epoch, dsc, iou, hd95, sensitivity, specificity, ppv, npv])
+
+    # ------------------------
+    # Real-time Plot Generator
+    # ------------------------
+    def generate_plots_from_realtime():
+        metrics_file = "csv/unetx_real_time_metrics.csv"
+        if not os.path.exists(metrics_file):
+            print("No real-time metrics file found.")
+            return
+
+        df = pd.read_csv(metrics_file)
+        latest = df.iloc[-1]
+
+        metrics = {
+            'Metric': ['DSC', 'IoU', 'HD95', 'Sensitivity', 'Specificity', 'PPV', 'NPV'],
+            'UNetX Score': [
+                latest['DSC'],
+                latest['IoU'],
+                latest['HD95'],
+                latest['Sensitivity'],
+                latest['Specificity'],
+                latest['PPV'],
+                latest['NPV']
+            ]
+        }
+
+        metrics_df = pd.DataFrame(metrics)
+        metrics_df.to_csv("csv/unetx_final_metrics.csv", index=False)
+
+        plt.figure(figsize=(10, 6))
+        bars = plt.bar(metrics['Metric'], metrics['UNetX Score'], color='skyblue')
+        plt.ylabel("Score / Value")
+        plt.title(f"UNetX Evaluation Metrics (Epoch {int(latest['Epoch'])})")
+        plt.xticks(rotation=45, ha='right')
+        plt.ylim(0, 1.1)
+
+        for bar in bars:
+            yval = bar.get_height()
+            plt.text(bar.get_x() + bar.get_width() / 2.0, yval + 0.01, f'{yval:.3f}', ha='center', va='bottom')
+
+        os.makedirs("results", exist_ok=True)
+        plt.tight_layout()
+        plt.savefig("plot/unetx_metrics_plot.png")
+        plt.close()
 
     print("All plots and CSV report generated successfully.")
 
