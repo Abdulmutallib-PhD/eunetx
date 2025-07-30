@@ -150,4 +150,8 @@ print("\nWaiting a seconds while generating plots...")
 time.sleep(3)
 # Execute the external plotting script
 os.system("python modules/generate_evaluation_plots.py")
+print("\nPlease wait while predictions are being generated...")
+
+time.sleep(10)
+os.system("python modules/plot_summary.py")
 print("All process completed")
