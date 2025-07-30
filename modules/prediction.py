@@ -154,4 +154,5 @@ print("\nPlease wait while predictions are being generated...")
 
 time.sleep(10)
 os.system("python modules/plot_summary.py")
+os.system("python modules/unetx_expert_comparision.py")
 print("All process completed")

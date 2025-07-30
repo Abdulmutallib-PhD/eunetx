@@ -1,15 +1,12 @@
 import os
 import torch
 import numpy as np
-import matplotlib.pyplot as plt
 from torch.utils.data import DataLoader, random_split
 from torch import optim
 from tqdm import tqdm
 from torch.nn.functional import interpolate
 from sklearn.metrics import jaccard_score, confusion_matrix
-import pandas as pd
 import time
-from PIL import Image
 
 from modules.dataset_loader import DicomAndPNGDataset
 from modules.model_unetx import UNetX
