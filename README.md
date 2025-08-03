@@ -52,8 +52,8 @@ This project addresses these challenges by automating segmentation using a robus
 Install dependencies:
 ```bash
 pip install -r requirements.txt
-python train_eEUNetX.py
-python evaluate_eEUNetX.py
+python train_eunetx.py
+python evaluate_eunetx.py
 
 Visualization
 Segmentation results and metrics are saved in the results/ folder.
