@@ -26,7 +26,7 @@ plt.bar(x + width, hd95, width=width, label="HD95")
 
 plt.xticks(x, models, rotation=20)
 plt.ylabel("Score / Distance (mm)")
-plt.title("Figure 4.18: Comparative Metrics of EUNetX vs Baseline Models")
+plt.title("Comparative Metrics of EUNetX vs Baseline Models")
 plt.legend()
 plt.grid(True, axis='y')
 plt.tight_layout()

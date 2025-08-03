@@ -1,8 +1,5 @@
-
-import os
 import numpy as np
 import torch
-import pandas as pd
 from medpy.metric.binary import hd95  # Ensure you install with: pip install medpy
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

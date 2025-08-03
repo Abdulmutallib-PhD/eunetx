@@ -18,7 +18,7 @@ plt.bar(x - width/2, internal, width, label="Internal (CT Brain)")
 plt.bar(x + width/2, external, width, label="External (MRI Lung)")
 
 plt.ylabel("Score")
-plt.title("Figure 4.17: Comparative Performance of EUNetX on Internal and External Datasets")
+plt.title("Comparative Performance of EUNetX on Internal and External Datasets")
 plt.xticks(x, metrics)
 plt.ylim(0.85, 1.05)
 plt.legend()

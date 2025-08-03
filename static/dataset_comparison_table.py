@@ -22,7 +22,7 @@ bars = plt.bar(models, num_scans, color='mediumseagreen')
 for bar, count in zip(bars, num_scans):
     plt.text(bar.get_x() + bar.get_width()/2, count + 500, str(count), ha='center', va='bottom', fontsize=10)
 
-plt.title("Figure X: Comparative Analysis of Datasets Used for EUNetX and Baseline Models", fontsize=14)
+plt.title("Comparative Analysis of Datasets Used for EUNetX and Baseline Models", fontsize=14)
 plt.ylabel("Number of Images", fontsize=12)
 plt.ylim(0, max(num_scans) + 5000)
 plt.xticks(rotation=15)

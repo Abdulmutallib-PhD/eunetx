@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 metrics = [
     "DSC", "IoU", "Sensitivity", "Specificity", "PPV", "NPV"
 ]
+
+# THIS MUST BE
 values = [
     0.9200, 0.8518, 0.8968, 0.9829, 0.9444, 0.9671
 ]

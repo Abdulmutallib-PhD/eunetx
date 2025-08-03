@@ -11,12 +11,10 @@ with GPU. Also make sure all env are installed using the requirements.txt file
 # ==============================================================
 import os
 import numpy as np
-import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader, random_split
-from torchvision import transforms
 from tqdm import tqdm
 import pydicom
 
@@ -238,5 +236,5 @@ def show_predictions(model, loader, num=2):
             out = (model(x) > 0.5).float()
 
 
-print("EUNetX DICOM Pipeline Completed.")
+print("EUNetX Pipeline Completed.")
 print("Initializing the next stage.")
