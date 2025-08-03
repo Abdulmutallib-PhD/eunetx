@@ -1,11 +1,11 @@
-# UNetX: Automated Brain Tumor Segmentation in CT Medical Images
+# EUNetX: Automated Brain Tumor Segmentation in CT Medical Images
 
 ## Overview
 
-This project presents **UNetX**, a novel deep learning architecture inspired by UNet++ for automated segmentation of brain tumors from CT medical images.  
+This project presents **EUNetX**, a novel deep learning architecture inspired by UNet++ for automated segmentation of brain tumors from CT medical images.  
 The model improves segmentation accuracy, computational efficiency, and generalizability over existing models like UNet++, TransUNet, Swin-PANet, and MedT.
 
-UNetX integrates extended skip connections and a lightweight feature fusion (LFF) mechanism to better capture complex tumor boundaries with high efficiency.
+EUNetX integrates extended skip connections and a lightweight feature fusion (LFF) mechanism to better capture complex tumor boundaries with high efficiency.
 
 ---
 
@@ -28,7 +28,7 @@ This project addresses these challenges by automating segmentation using a robus
 
 ## Results
 
-| Metric                        | UNetX Achieved |
+| Metric                        | EUNetX Achieved |
 |-------------------------------|-----------------|
 | Dice Similarity Coefficient   | **93.04%**      |
 | Jaccard Index (IoU)           | **87.05%**      |
@@ -52,8 +52,8 @@ This project addresses these challenges by automating segmentation using a robus
 Install dependencies:
 ```bash
 pip install -r requirements.txt
-python train_eunetx.py
-python evaluate_eunetx.py
+python train_eEUNetX.py
+python evaluate_eEUNetX.py
 
 Visualization
 Segmentation results and metrics are saved in the results/ folder.
@@ -68,7 +68,7 @@ Research Baseline Models:
 - Zhou et al., 2018 — *UNet++*
 - Liao et al., 2022 — *Swin-PANet*
 - Maria et al., 2021 — *MedT*
-- *Thesis title*: **A Custom Deep Learning Architecture (UNetX) for Automated Brain Tumor Segmentation in CT Medical Images** by Alhassan Abdulmutallib (2025)
+- *Thesis title*: **A Custom Deep Learning Architecture (EUNetX) for Automated Brain Tumor Segmentation in CT Medical Images** by Alhassan Abdulmutallib (2025)
 
 ---
 
