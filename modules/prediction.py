@@ -8,9 +8,9 @@ from torch.utils.data import Dataset, DataLoader
 from sklearn.metrics import jaccard_score, confusion_matrix
 import subprocess
 
-class UNetX(nn.Module):
+class EUNetX(nn.Module):
     def __init__(self):
-        super(UNetX, self).__init__()
+        super(EUNetX, self).__init__()
         self.encoder1 = nn.Sequential(
             nn.Conv2d(1, 32, 3, padding=1), nn.ReLU(), nn.BatchNorm2d(32)
         )
@@ -87,7 +87,7 @@ loader = DataLoader(dataset, batch_size=1, shuffle=True)
 
 # === Model Training ===
 device = torch.device("cpu")
-model = UNetX().to(device)
+model = EUNetX().to(device)
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 loss_fn = nn.BCELoss()
 
@@ -137,8 +137,8 @@ print(f"Negative Predictive Value (NPV): {npv:.4f}")
 
 # === Save model ===
 os.makedirs("results", exist_ok=True)
-torch.save(model.state_dict(), "results/unetx_model.pth")
-print("Model saved to results/unetx_model.pth")
+torch.save(model.state_dict(), "results/EUNetX_model.pth")
+print("Model saved to results/EUNetX_model.pth")
 
 # === Auto-run visualization ===
 print("\nWaiting 3 seconds before launching visualization...")
@@ -155,5 +155,5 @@ print("\nPlease wait while predictions are being generated...")
 
 time.sleep(10)
 os.system("python modules/plot_summary.py")
-os.system("python modules/unetx_expert_comparision.py")
+os.system("python modules/EUNetX_expert_comparision.py")
 print("All process completed")

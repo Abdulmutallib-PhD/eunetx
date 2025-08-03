@@ -5,9 +5,9 @@ import torch
 import matplotlib.pyplot as plt
 from torch.utils.data import DataLoader
 
-class UNet(torch.nn.Module):
+class EUNetX(torch.nn.Module):
     def __init__(self):
-        super(UNet, self).__init__()
+        super(EUNetX, self).__init__()
         self.encoder1 = torch.nn.Sequential(
             torch.nn.Conv2d(1, 32, 3, padding=1), torch.nn.ReLU(), torch.nn.BatchNorm2d(32)
         )
@@ -73,8 +73,8 @@ mask_dir = 'dataset/masks'
 dataset = Dataset(image_dir, mask_dir)
 loader = DataLoader(dataset, batch_size=1, shuffle=False)
 
-model = UNet()
-model.load_state_dict(torch.load("results/unetx_model.pth", map_location='cpu'))
+model = EUNetX()
+model.load_state_dict(torch.load("results/EUNetX_model.pth", map_location='cpu'))
 model.eval()
 
 # Run one prediction
@@ -92,7 +92,7 @@ axs[0].set_title("Original Image")
 axs[1].imshow(truth, cmap='gray')
 axs[1].set_title("Ground Truth Mask")
 axs[2].imshow(pred_mask, cmap='gray')
-axs[2].set_title("UNetX Prediction")
+axs[2].set_title("EUNetX Prediction")
 for ax in axs:
     ax.axis('off')
 plt.tight_layout()

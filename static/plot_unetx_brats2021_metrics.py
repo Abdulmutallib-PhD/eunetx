@@ -12,7 +12,7 @@ values = [
 plt.figure(figsize=(10, 6))
 bars = plt.bar(metrics, values, color='skyblue', edgecolor='black')
 plt.ylim(0, 1.05)
-plt.title("Figure 4.7.2: UNetX Performance Metrics on BraTS2021 Lung MRI Dataset")
+plt.title("Figure 4.7.2: EUNetX Performance Metrics on BraTS2021 Lung MRI Dataset")
 plt.xlabel("Segmentation Metrics")
 plt.ylabel("Score")
 plt.grid(axis='y', linestyle='--', alpha=0.7)
@@ -24,5 +24,5 @@ for bar, value in zip(bars, values):
 
 # Save and show
 plt.tight_layout()
-plt.savefig("results/unetx_brats2021_metrics_chart.png")
+plt.savefig("results/EUNetX_brats2021_metrics_chart.png")
 plt.show()

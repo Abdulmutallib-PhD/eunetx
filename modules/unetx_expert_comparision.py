@@ -12,10 +12,10 @@ os.makedirs(appendix_dir, exist_ok=True)
 df = pd.read_csv(eval_metrics_path)
 df['Model'] = df['Model'].str.strip().str.lower()
 
-# Get UNetX results
-unetx_row = df[df['Model'] == 'unetx'].copy()
-if unetx_row.empty:
-    raise ValueError("UNetX model not found in evaluation_metrics.csv")
+# Get EUNetX results
+EUNetX_row = df[df['Model'] == 'EUNetX'].copy()
+if EUNetX_row.empty:
+    raise ValueError("EUNetX model not found in evaluation_metrics.csv")
 
 # Simulated Expert Radiologist results (realistic/near-ideal for reference)
 expert_metrics = {
@@ -29,12 +29,12 @@ expert_metrics = {
     'NPV': 0.9980
 }
 
-# Combine UNetX and Expert into one dataframe
+# Combine EUNetX and Expert into one dataframe
 df_expert = pd.DataFrame([expert_metrics])
-df_combined = pd.concat([unetx_row, df_expert], ignore_index=True)
+df_combined = pd.concat([EUNetX_row, df_expert], ignore_index=True)
 
 # Save to Appendix C.2
-comparison_csv_path = os.path.join(appendix_dir, 'appendix_C2_unetx_vs_expert.csv')
+comparison_csv_path = os.path.join(appendix_dir, 'appendix_C2_EUNetX_vs_expert.csv')
 df_combined.to_csv(comparison_csv_path, index=False)
 
 # Select relevant clinical metrics
@@ -52,16 +52,16 @@ labels = {
 # Prepare data for plotting
 x = np.arange(len(metrics))
 width = 0.35
-unetx_vals = [df_combined.loc[0, m] for m in metrics]
+EUNetX_vals = [df_combined.loc[0, m] for m in metrics]
 expert_vals = [df_combined.loc[1, m] for m in metrics]
 
 # Plot
 fig, ax = plt.subplots(figsize=(12, 6))
-bars1 = ax.bar(x - width/2, unetx_vals, width, label='UNetX', color='gray')
+bars1 = ax.bar(x - width/2, EUNetX_vals, width, label='EUNetX', color='gray')
 bars2 = ax.bar(x + width/2, expert_vals, width, label='Expert Radiologist', color='steelblue')
 
 ax.set_ylabel('Score')
-ax.set_title('UNetX vs Expert Radiologist - Clinical Evaluation Metrics')
+ax.set_title('EUNetX vs Expert Radiologist - Clinical Evaluation Metrics')
 ax.set_xticks(x)
 ax.set_xticklabels([labels[m] for m in metrics], rotation=30, ha='right')
 ax.set_ylim(0, 1.1)
@@ -80,7 +80,7 @@ for bar in bars1 + bars2:
 plt.tight_layout()
 
 # Save Appendix C.4 plot
-plot_path = os.path.join(appendix_dir, 'appendix_C4_unetx_vs_expert_plot.png')
+plot_path = os.path.join(appendix_dir, 'appendix_C4_EUNetX_vs_expert_plot.png')
 plt.savefig(plot_path)
 plt.close()
 

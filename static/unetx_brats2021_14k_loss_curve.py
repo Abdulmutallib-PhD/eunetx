@@ -13,10 +13,10 @@ losses = [
 
 plt.figure(figsize=(10, 6))
 plt.plot(epochs, losses, marker='o', linestyle='-', color='blue')
-plt.title("Figure 4.7.1: Training Loss Curve for UNetX on BraTS2021 Dataset")
+plt.title("Figure 4.7.1: Training Loss Curve for EUNetX on BraTS2021 Dataset")
 plt.xlabel("Epoch")
 plt.ylabel("Loss")
 plt.grid(True)
 plt.tight_layout()
-plt.savefig("results/unetx_brats2021_loss_curve.png")
+plt.savefig("results/EUNetX_brats2021_loss_curve.png")
 plt.show()

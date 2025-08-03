@@ -7,7 +7,7 @@ from matplotlib.ticker import MaxNLocator
 
 def generate_plots():
     data = {
-        "Model": ["UNet++", "TransUNet", "Swin-PANet", "MedT", "UNetX"],
+        "Model": ["UNet++", "TransUNet", "Swin-PANet", "MedT", "EUNetX"],
         "DSC": [np.nan, 88.39, 91.42, 81.02, 93.04],
         "HD95": [np.nan, np.nan, np.nan, np.nan, 2.21],
         "IoU": [92.52, np.nan, 84.88, 69.61, 87.05],
@@ -64,9 +64,9 @@ def generate_plots():
     # Plot 4: Comparative DSC Analysis
     fig, ax = plt.subplots(figsize=(10, 6))
     df_comp = df[["Model", "DSC"]].dropna().set_index("Model")
-    colors = ["green" if m == "UNetX" else "gray" for m in df_comp.index]
+    colors = ["green" if m == "EUNetX" else "gray" for m in df_comp.index]
     df_comp.plot(kind="bar", ax=ax, color=colors)
-    plt.title("Comparative DSC Analysis: UNetX vs Others")
+    plt.title("Comparative DSC Analysis: EUNetX vs Others")
     plt.ylabel("DSC (%)")
     plt.xticks(rotation=45)
     plt.tight_layout()
@@ -89,7 +89,7 @@ def generate_plots():
     # ------------------------
     def log_realtime_metrics(epoch, dsc, iou, hd95, sensitivity, specificity, ppv, npv):
         os.makedirs("results", exist_ok=True)
-        log_path = "csv/unetx_real_time_metrics.csv"
+        log_path = "csv/EUNetX_real_time_metrics.csv"
         file_exists = os.path.isfile(log_path)
 
         with open(log_path, mode='a', newline='') as file:
@@ -102,7 +102,7 @@ def generate_plots():
     # Real-time Plot Generator
     # ------------------------
     def generate_plots_from_realtime():
-        metrics_file = "csv/unetx_real_time_metrics.csv"
+        metrics_file = "csv/EUNetX_real_time_metrics.csv"
         if not os.path.exists(metrics_file):
             print("No real-time metrics file found.")
             return
@@ -112,7 +112,7 @@ def generate_plots():
 
         metrics = {
             'Metric': ['DSC', 'IoU', 'HD95', 'Sensitivity', 'Specificity', 'PPV', 'NPV'],
-            'UNetX Score': [
+            'EUNetX Score': [
                 latest['DSC'],
                 latest['IoU'],
                 latest['HD95'],
@@ -124,12 +124,12 @@ def generate_plots():
         }
 
         metrics_df = pd.DataFrame(metrics)
-        metrics_df.to_csv("csv/unetx_final_metrics.csv", index=False)
+        metrics_df.to_csv("csv/EUNetX_final_metrics.csv", index=False)
 
         plt.figure(figsize=(10, 6))
-        bars = plt.bar(metrics['Metric'], metrics['UNetX Score'], color='skyblue')
+        bars = plt.bar(metrics['Metric'], metrics['EUNetX Score'], color='skyblue')
         plt.ylabel("Score / Value")
-        plt.title(f"UNetX Evaluation Metrics (Epoch {int(latest['Epoch'])})")
+        plt.title(f"EUNetX Evaluation Metrics (Epoch {int(latest['Epoch'])})")
         plt.xticks(rotation=45, ha='right')
         plt.ylim(0, 1.1)
 
@@ -139,7 +139,7 @@ def generate_plots():
 
         os.makedirs("results", exist_ok=True)
         plt.tight_layout()
-        plt.savefig("plot/unetx_metrics_plot.png")
+        plt.savefig("plot/EUNetX_metrics_plot.png")
         plt.close()
 
     print("All plots and CSV report generated successfully.")

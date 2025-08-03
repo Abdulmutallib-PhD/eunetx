@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-UNetX Brain Tumor Segmentation using DICOM CT Images (PyTorch)
+EUNetX Brain Tumor Segmentation using DICOM CT Images (PyTorch)
 
 Note: This section for testing the model using delineated, and non-delineated data. You must have high end computer
 with GPU. Also make sure all env are installed using the requirements.txt file
@@ -29,7 +29,7 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
 # ==============================================================
-# Model Components — UNetX Blocks
+# Model Components — EUNetX Blocks
 # ==============================================================
 
 class ConvBlock(nn.Module):
@@ -59,7 +59,7 @@ class LightweightFeatureFusion(nn.Module):
     def forward(self, x):
         return self.fuse(x)
 
-class UNetX(nn.Module):
+class EUNetX(nn.Module):
     def __init__(self, in_channels=1, out_channels=1, features=[64, 128, 256, 512]):
         super().__init__()
         self.encoder = nn.ModuleList()
@@ -190,7 +190,7 @@ def validate(model, loader, criterion):
 # ==============================================================
 # Main Training
 # ==============================================================
-model = UNetX().to(device)
+model = EUNetX().to(device)
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 epochs = 2
 
@@ -238,5 +238,5 @@ def show_predictions(model, loader, num=2):
             out = (model(x) > 0.5).float()
 
 
-print("UNetX DICOM Pipeline Completed.")
+print("EUNetX DICOM Pipeline Completed.")
 print("Initializing the next stage.")

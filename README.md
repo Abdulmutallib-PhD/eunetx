@@ -16,7 +16,7 @@ This project addresses these challenges by automating segmentation using a robus
 
 ---
 
-## Key Features
+## Key Features[evaluation_metrics.csv](csv%2Fevaluation_metrics.csv)
 
 - Custom CNN architecture based on UNet++
 - Extended skip connections & lightweight feature fusion
@@ -52,8 +52,8 @@ This project addresses these challenges by automating segmentation using a robus
 Install dependencies:
 ```bash
 pip install -r requirements.txt
-python train_unetx.py
-python evaluate_unetx.py
+python train_eunetx.py
+python evaluate_eunetx.py
 
 Visualization
 Segmentation results and metrics are saved in the results/ folder.

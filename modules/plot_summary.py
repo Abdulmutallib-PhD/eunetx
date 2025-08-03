@@ -44,12 +44,12 @@ plt.tight_layout()
 plt.savefig(os.path.join(plots_dir, 'plot_predictive_values.png'))
 plt.close()
 
-# Filter only UNetX row
-unetx_row = df[df['Model'].str.lower() == 'unetx']
+# Filter only EUNetX row
+EUNetX_row = df[df['Model'].str.lower() == 'EUNetX']
 
-if not unetx_row.empty:
+if not EUNetX_row.empty:
     # Drop 'Model' column to get only metrics
-    unetx_metrics = unetx_row.drop(columns=['Model']).iloc[0]
+    EUNetX_metrics = EUNetX_row.drop(columns=['Model']).iloc[0]
 
     # Label mapping
     rename_map = {
@@ -64,7 +64,7 @@ if not unetx_row.empty:
 
     # Metric order and formatted labels
     ordered_keys = ['NPV', 'PPV', 'Specificity', 'Sensitivity', 'HD95', 'IoU', 'DSC']
-    metrics = {rename_map[k]: unetx_metrics[k] for k in ordered_keys if k in unetx_metrics}
+    metrics = {rename_map[k]: EUNetX_metrics[k] for k in ordered_keys if k in EUNetX_metrics}
 
     # Create horizontal bar plot
     plt.figure(figsize=(8, 5))
@@ -77,13 +77,13 @@ if not unetx_row.empty:
                  va='center', fontsize=9)
 
     plt.xlim(0, max(metrics.values()) + 0.5)
-    plt.title("UNetX Evaluation Metrics Summary")
+    plt.title("EUNetX Evaluation Metrics Summary")
     plt.xlabel("Score / Distance")
     plt.tight_layout()
-    plt.savefig(os.path.join(plots_dir, 'unetx_summary_horizontal.png'))
+    plt.savefig(os.path.join(plots_dir, 'EUNetX_summary_horizontal.png'))
     plt.close()
 
-    print("Saved to:", os.path.join(plots_dir, 'unetx_summary_horizontal.png'))
+    print("Saved to:", os.path.join(plots_dir, 'EUNetX_summary_horizontal.png'))
 else:
-    print("UNetX not found in the dataset.")
+    print("EUNetX not found in the dataset.")
 

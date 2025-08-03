@@ -9,7 +9,7 @@ from sklearn.metrics import jaccard_score, confusion_matrix
 import time
 
 from modules.dataset_loader import DicomAndPNGDataset
-from modules.model_unetx import UNetX
+from modules.model_eunetx import EUNetX
 from utils.utils import dice_loss
 
 # -------------------------
@@ -69,7 +69,7 @@ train_loader = DataLoader(train_ds, batch_size=2, shuffle=True)
 val_loader = DataLoader(val_ds, batch_size=2)
 
 # Initialize model
-model = UNetX().to(device)
+model = EUNetX().to(device)
 optimizer = optim.Adam(model.parameters(), lr=1e-3)
 epochs = 2
 train_losses, val_losses = [], []
