@@ -16,7 +16,7 @@ This project addresses these challenges by automating segmentation using a robus
 
 ---
 
-## Key Features[evaluation_metrics.csv](csv%2Fevaluation_metrics.csv)
+## Key Features
 
 - Custom CNN architecture based on UNet++
 - Extended skip connections & lightweight feature fusion
