@@ -17,7 +17,7 @@ EUNetX_row = df[df['Model'] == 'EUNetX'].copy()
 if EUNetX_row.empty:
     raise ValueError("EUNetX model not found in evaluation_metrics.csv")
 
-# Simulated Expert Radiologist results (realistic/near-ideal for reference)
+# Simulated Expert Radiologist results (realistic/near-ideal for reference) This gotten from Expert
 expert_metrics = {
     'Model': 'expert_radiologist',
     'DSC': 0.9650,
@@ -34,7 +34,7 @@ df_expert = pd.DataFrame([expert_metrics])
 df_combined = pd.concat([EUNetX_row, df_expert], ignore_index=True)
 
 # Save to Appendix C.2
-comparison_csv_path = os.path.join(appendix_dir, 'appendix_C2_EUNetX_vs_expert.csv')
+comparison_csv_path = os.path.join(appendix_dir, 'appendix_C2_eunetx_vs_expert.csv')
 df_combined.to_csv(comparison_csv_path, index=False)
 
 # Select relevant clinical metrics
@@ -80,7 +80,7 @@ for bar in bars1 + bars2:
 plt.tight_layout()
 
 # Save Appendix C.4 plot
-plot_path = os.path.join(appendix_dir, 'appendix_C4_EUNetX_vs_expert_plot.png')
+plot_path = os.path.join(appendix_dir, 'appendix_C4_eunetx_vs_expert_plot.png')
 plt.savefig(plot_path)
 plt.close()
 

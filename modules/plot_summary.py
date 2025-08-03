@@ -83,7 +83,7 @@ if not EUNetX_row.empty:
     plt.savefig(os.path.join(plots_dir, 'EUNetX_summary_horizontal.png'))
     plt.close()
 
-    print("Saved to:", os.path.join(plots_dir, 'EUNetX_summary_horizontal.png'))
+    print("Saved to:", os.path.join(plots_dir, 'eunetx_summary_horizontal.png'))
 else:
     print("EUNetX not found in the dataset.")
 

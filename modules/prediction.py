@@ -137,8 +137,8 @@ print(f"Negative Predictive Value (NPV): {npv:.4f}")
 
 # === Save model ===
 os.makedirs("results", exist_ok=True)
-torch.save(model.state_dict(), "results/EUNetX_model.pth")
-print("Model saved to results/EUNetX_model.pth")
+torch.save(model.state_dict(), "results/eunetx_model.pth")
+print("Model saved to results/eunetx_model.pth")
 
 # === Auto-run visualization ===
 print("\nWaiting 3 seconds before launching visualization...")
@@ -155,5 +155,22 @@ print("\nPlease wait while predictions are being generated...")
 
 time.sleep(10)
 os.system("python modules/plot_summary.py")
-os.system("python modules/EUNetX_expert_comparision.py")
+os.system("python modules/eunetx_expert_comparision.py")
+print("Process completed")
+
+time.sleep(3)
+print("\nPlease wait while generating reporting data...")
+
+# RUN STATIC FILES FOR GENERATING REPORTS
+os.system("python static/comparative_on_baseline.py")
+os.system("python static/comparative_unetx_metrics.py")
+os.system("python static/dataset_comparison_table.py")
+os.system("python static/external_dataset_loss_plot.py")
+os.system("python static/plot_unetx_brats2021_metrics.py")
+os.system("python static/unetx_brats2021_14k_loss_curve.py")
+os.system("python static/unetx_comparative_analysis_datasets.py")
+os.system("python static/unetx_internal_loss_curve.py")
+os.system("python static/unetx_lung_mri_metrics.pyy")
+
+time.sleep(10)
 print("All process completed")

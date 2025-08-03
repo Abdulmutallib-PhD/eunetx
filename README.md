@@ -52,7 +52,7 @@ This project addresses these challenges by automating segmentation using a robus
 Install dependencies:
 ```bash
 pip install -r requirements.txt
-python train_eunetx.py
+python train_eunetx_external.py
 python evaluate_eunetx.py
 
 Visualization

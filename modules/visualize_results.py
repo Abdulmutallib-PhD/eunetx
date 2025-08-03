@@ -74,7 +74,7 @@ dataset = Dataset(image_dir, mask_dir)
 loader = DataLoader(dataset, batch_size=1, shuffle=False)
 
 model = EUNetX()
-model.load_state_dict(torch.load("results/EUNetX_model.pth", map_location='cpu'))
+model.load_state_dict(torch.load("results/eunetx_model.pth", map_location='cpu'))
 model.eval()
 
 # Run one prediction

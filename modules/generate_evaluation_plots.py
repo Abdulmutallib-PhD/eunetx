@@ -102,7 +102,7 @@ def generate_plots():
     # Real-time Plot Generator
     # ------------------------
     def generate_plots_from_realtime():
-        metrics_file = "csv/EUNetX_real_time_metrics.csv"
+        metrics_file = "csv/eunetx_real_time_metrics.csv"
         if not os.path.exists(metrics_file):
             print("No real-time metrics file found.")
             return
@@ -124,7 +124,7 @@ def generate_plots():
         }
 
         metrics_df = pd.DataFrame(metrics)
-        metrics_df.to_csv("csv/EUNetX_final_metrics.csv", index=False)
+        metrics_df.to_csv("csv/eunetx_final_metrics.csv", index=False)
 
         plt.figure(figsize=(10, 6))
         bars = plt.bar(metrics['Metric'], metrics['EUNetX Score'], color='skyblue')
@@ -139,7 +139,7 @@ def generate_plots():
 
         os.makedirs("results", exist_ok=True)
         plt.tight_layout()
-        plt.savefig("plot/EUNetX_metrics_plot.png")
+        plt.savefig("plot/eunetx_metrics_plot.png")
         plt.close()
 
     print("All plots and CSV report generated successfully.")
