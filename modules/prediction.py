@@ -1,6 +1,7 @@
 import os
 import time
 import cv2
+import csv
 import numpy as np
 import torch
 import torch.nn as nn
@@ -85,6 +86,19 @@ mask_dir = "dataset/masks"
 dataset = Dataset(image_dir, mask_dir)
 loader = DataLoader(dataset, batch_size=1, shuffle=True)
 
+
+
+
+# Prepare results directory and CSV file
+os.makedirs("results", exist_ok=True)
+csv_path = "csv/eunetx_epoch_loss.csv"
+
+# Initialize CSV file with headers
+with open(csv_path, mode='w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(["Epoch", "Loss"])
+
+
 # === Model Training ===
 device = torch.device("cpu")
 model = EUNetX().to(device)
@@ -103,7 +117,14 @@ for epoch in range(50):
         loss.backward()
         optimizer.step()
         total_loss += loss.item()
+
+        # Inside training loop after total_loss is calculated
+        with open(csv_path, mode='a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow([epoch + 1, total_loss])
+
     print(f"Epoch {epoch+1}/50, Loss: {total_loss:.4f}")
+
 
 # === Evaluation ===
 model.eval()
@@ -170,7 +191,6 @@ os.system("python static/plot_unetx_brats2021_metrics.py")
 os.system("python static/unetx_brats2021_14k_loss_curve.py")
 os.system("python static/unetx_comparative_analysis_datasets.py")
 os.system("python static/unetx_internal_loss_curve.py")
-os.system("python static/unetx_lung_mri_metrics.pyy")
-
+os.system("python static/unetx_lung_mri_metrics.py")
 time.sleep(10)
 print("All process completed")

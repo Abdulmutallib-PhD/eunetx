@@ -34,7 +34,7 @@ df_expert = pd.DataFrame([expert_metrics])
 df_combined = pd.concat([EUNetX_row, df_expert], ignore_index=True)
 
 # Save to Appendix C.2
-comparison_csv_path = os.path.join(appendix_dir, 'appendix_C2_eunetx_vs_expert.csv')
+comparison_csv_path = os.path.join(appendix_dir, 'eunetx_vs_expert.csv')
 df_combined.to_csv(comparison_csv_path, index=False)
 
 # Select relevant clinical metrics
@@ -80,7 +80,7 @@ for bar in bars1 + bars2:
 plt.tight_layout()
 
 # Save Appendix C.4 plot
-plot_path = os.path.join(appendix_dir, 'appendix_C4_eunetx_vs_expert_plot.png')
+plot_path = os.path.join(appendix_dir, 'eunetx_vs_expert_plot.png')
 plt.savefig(plot_path)
 plt.close()
 
