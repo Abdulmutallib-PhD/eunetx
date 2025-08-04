@@ -1,10 +1,8 @@
-import os
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
 # Load CSVs
-loss_df = pd.read_csv("csv//eunetx_epoch_loss.csv")
+loss_df = pd.read_csv("csv/eunetx_epoch_loss.csv")
 eval_df = pd.read_csv("csv/evaluation_metrics.csv")
 expert_df = pd.read_csv("csv/expert_radiologist_metrics.csv")
 perf_df = pd.read_csv("csv/system_performance_report.csv")

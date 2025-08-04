@@ -3,7 +3,7 @@ source myenv/bin/activate
 
 
 ACTIVATE ENV ON WINDOWS
-.\env\Scripts\activate
+.\venv\Scripts\activate
 
 
 pip freeze > requirements.txt

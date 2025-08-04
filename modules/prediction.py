@@ -11,6 +11,8 @@ from sklearn.metrics import jaccard_score, confusion_matrix
 import platform
 import psutil
 import socket
+from scipy.spatial.distance import directed_hausdorff
+from scipy.ndimage import distance_transform_edt
 
 
 class EUNetX(nn.Module):
@@ -90,7 +92,6 @@ mask_dir = "dataset/masks"
 dataset = Dataset(image_dir, mask_dir)
 loader = DataLoader(dataset, batch_size=1, shuffle=True)
 
-
 # Prepare results directory and CSV file
 os.makedirs("results", exist_ok=True)
 csv_path = "csv/eunetx_epoch_loss.csv"
@@ -114,7 +115,7 @@ system_info = {
     "Platform-Version": platform.version(),
     "Processor": platform.processor(),
     "CPU Count": psutil.cpu_count(logical=True),
-    "RAM (GB)": round(psutil.virtual_memory().total / (1024 ** 3), 2),
+    "RAM (GB)": round(psutil.virtual_memory().total),
     "GPU Available": torch.cuda.is_available(),
     "GPU Name": torch.cuda.get_device_name(0) if torch.cuda.is_available() else "N/A",
     "Python Version": platform.python_version()
@@ -166,8 +167,6 @@ with torch.no_grad():
         y_pred.extend(pred.astype(int))
         y_true.extend(mask.astype(int))
 
-from scipy.spatial.distance import directed_hausdorff
-from scipy.ndimage import distance_transform_edt
 
 # Convert to arrays
 y_true = np.array(y_true)
@@ -240,17 +239,7 @@ data = {
     "NPV": [np.nan, np.nan, np.nan, np.nan, round(npv * 100, 2)]
 }
 
-# data = {
-#     "Model": ["UNet++", "TransUNet", "Swin-PANet", "MedT", "EUNetX"],
-#     "DSC": [np.nan, 88.39, 91.42, 81.02, round(dice, 2)],
-#     "HD95": [np.nan, np.nan, np.nan, np.nan, hd95_score],
-#     "IoU": [92.52, np.nan, 84.88, 69.61, round(jaccard, 2)],
-#     "Sensitivity": [np.nan, np.nan, np.nan, np.nan, round(sensitivity, 2)],
-#     "Specificity": [np.nan, np.nan, np.nan, np.nan, round(specificity, 2)],
-#     "PPV": [np.nan, np.nan, np.nan, np.nan, round(ppv, 2)],
-#     "NPV": [np.nan, np.nan, np.nan, np.nan, round(npv, 2)]
-# }
-
+# REPORT FOR COMPUTATIONAL PERFORMANCE
 evaluation_end = time.time()
 evaluation_duration = evaluation_end - evaluation_start
 end_time = time.time()
@@ -262,9 +251,9 @@ with open(report_path, mode='w', newline='') as file:
     writer.writerow(["Metric", "Value"])
     for key, value in system_info.items():
         writer.writerow([key, value])
-    writer.writerow(["Training Duration (s)", round(training_duration * 100, 2)])
-    writer.writerow(["Evaluation Duration (s)", round(evaluation_duration * 100, 2)])
-    writer.writerow(["Total Runtime (s)", round(total_duration * 100, 2)])
+    writer.writerow(["Training Duration (s)", round(training_duration, 2)])
+    writer.writerow(["Evaluation Duration (s)",  round(evaluation_duration, 2)])
+    writer.writerow(["Total Runtime (s)",  round(total_duration, 2)])
 
 df = pd.DataFrame(data)
 df.to_csv("csv/evaluation_metrics.csv", index=False)
