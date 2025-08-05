@@ -115,7 +115,7 @@ system_info = {
     "Platform-Version": platform.version(),
     "Processor": platform.processor(),
     "CPU Count": psutil.cpu_count(logical=True),
-    "RAM (GB)": round(psutil.virtual_memory().total),
+    "RAM (GB)":  round(psutil.virtual_memory().total, 0),
     "GPU Available": torch.cuda.is_available(),
     "GPU Name": torch.cuda.get_device_name(0) if torch.cuda.is_available() else "N/A",
     "Python Version": platform.python_version()
