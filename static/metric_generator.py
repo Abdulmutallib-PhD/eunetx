@@ -4,14 +4,15 @@ import os
 
 
 # METRIC FOR EUNetX
-csv_path = 'csv/evaluation_metrics.csv'
+# csv_path = 'csv/evaluation_metrics.csv'
+csv_path = 'csv/eunetx_metrics.csv'
 df = pd.read_csv(csv_path)
 eunetx_df = df[df['Model'] == 'EUNetX']
 metrics = ['DSC', 'HD95', 'IoU', 'Sensitivity', 'Specificity', 'PPV', 'NPV']
 values = eunetx_df[metrics].values.flatten()
 plt.figure(figsize=(10, 6))
 plt.bar(metrics, values)
-plt.title('Evaluation Metrics for EUNetX')
+plt.title('Evaluation Metrics for EUNetX on MRI Datasets')
 plt.ylabel('Score')
 plt.ylim(0, 100)
 plt.grid(axis='y', linestyle='--', alpha=0.7)

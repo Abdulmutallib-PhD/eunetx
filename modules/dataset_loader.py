@@ -30,7 +30,7 @@ class DicomAndPNGDataset(Dataset):
         # Normalize image
         image = (image - image.min()) / (image.max() - image.min() + 1e-8)
 
-        # Load mask (DICOM or PNG)
+        # Load masks (DICOM or PNG)
         if mask_path.lower().endswith(".dcm"):
             mask = self.load_dicom(mask_path)
         else:

@@ -132,11 +132,11 @@ class DicomDataset(Dataset):
         return img, mask
 
 # Pls note: You must specify your dataset, where the code based location is datasets folder
-non_annotated_dir = 'collection/nonannotated/images'  # pls adjust to your path
+non_annotated_dir = 'collection/images/images'  # pls adjust to your path
 annotated_dir = 'collection/annotated/images'  # pls adjust to your path
 
 
-# pathnon_annotated_dir = '../dataset/nonannotated/images'
+# pathnon_annotated_dir = '../dataset/images/images'
 # annotated_dir = '../dataset/annotated/images'
 
 dataset = DicomDataset(non_annotated_dir, annotated_dir)
