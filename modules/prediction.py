@@ -304,7 +304,7 @@ expert_metrics = {
 
 # Save expert radiologist CSV
 df_expert = pd.DataFrame(expert_metrics)
-df_expert.to_csv("csv/expert_radiologist_metrics.csv", index=False)
+df_expert.to_csv("csv/comparison_eunetx_vs_expert.csv", index=False)
 
 
 # === Save model ===
