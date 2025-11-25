@@ -1,4 +1,4 @@
-# EUNetX: Automated Brain Tumor Segmentation in CT Medical Images
+# EUNetX: Automated Brain Tumor Segmentation in CT, MRI and Ultrasound Medical Images
 
 ## Overview
 
@@ -26,12 +26,12 @@ This project addresses these challenges by automating segmentation using a robus
 
 ---
 
-## Results
+## MRI Results 
 
 | Metric                        | EUNetX Achieved |
 |-------------------------------|-----------------|
-| Dice Similarity Coefficient   | **93.04%**      |
-| Jaccard Index (IoU)           | **87.05%**      |
+| Dice Similarity Coefficient   | **93.44%**      |
+| Jaccard Index (IoU)           | **91.28%**      |
 | Computational Efficiency      | High            |
 | Generalizability              | Verified        |
 
@@ -74,8 +74,7 @@ Research Baseline Models:
 
 ## Author
 
-**Alhassan Abdulmutallib**  
-PhD Student in Computer Science  
+**Dr. Alhassan Abdulmutallib**  
 Department of Computer Science  
 Baze University, Abuja, Nigeria  
 
