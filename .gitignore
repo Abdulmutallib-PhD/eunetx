@@ -31,7 +31,7 @@ env/
 *.pth
 
 # Logs
-*.log
+#*.log
 
 # DICOM & medical images
 *.dcm
