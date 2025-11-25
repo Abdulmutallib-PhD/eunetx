@@ -1,8 +1,8 @@
-# EUNetX: Automated Brain Tumor Segmentation in CT, MRI and Ultrasound Medical Images
+# EUNetX: Automated Tumor Segmentation in CT, MRI and Ultrasound Medical Images
 
 ## Overview
 
-This project presents **EUNetX**, a novel deep learning architecture inspired by UNet++ for automated segmentation of brain tumors from CT medical images.  
+This project presents **EUNetX**, a novel deep learning architecture inspired by UNet++ for automated segmentation of tumors from CT, MRI and Ultrasound medical images.  
 The model improves segmentation accuracy, computational efficiency, and generalizability over existing models like UNet++, TransUNet, Swin-PANet, and MedT.
 
 EUNetX integrates extended skip connections and a lightweight feature fusion (LFF) mechanism to better capture complex tumor boundaries with high efficiency.
