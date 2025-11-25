@@ -15,12 +15,12 @@ env/
 .ipynb_checkpoints/
 
 # Datasets & outputs
-dataset/
-collection/
-data/
-csv/
-plots/
-miscellaneous/
+#dataset/
+#collection/
+#data/
+#csv/
+#plots/
+#miscellaneous/
 
 # collections/
 # training/
