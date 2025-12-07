@@ -332,69 +332,8 @@ os.system("python modules/generate_report.py")
 
 # RUN STATIC FILES FOR GENERATING REPORTS
 # os.system("python static/comparative_on_baseline.py")
-# os.system("python static/comparative_unetx_metrics.py")
-# os.system("python static/dataset_comparison_table.py")
-# os.system("python static/external_dataset_loss_plot.py")
-# os.system("python static/plot_unetx_brats2021_metrics.py")
-# os.system("python static/unetx_brats2021_14k_loss_curve.py")
-# os.system("python static/unetx_comparative_analysis_datasets.py")
-# os.system("python static/unetx_internal_loss_curve.py")
-# os.system("python static/unetx_lung_mri_metrics.py")
+
 time.sleep(10)
 print("All process completed")
 
 
-
-
-
-
-
-
-
-import nibabel as nib
-from skimage.transform import resize
-
-class Dataset(Dataset):
-    def __init__(self, image_dir, mask_dir):
-        self.image_paths = sorted([
-            os.path.join(image_dir, fname)
-            for fname in os.listdir(image_dir)
-            if fname.endswith('.png') or fname.endswith('.nii') or fname.endswith('.nii.gz')
-        ])
-        self.mask_paths = sorted([
-            os.path.join(mask_dir, fname)
-            for fname in os.listdir(mask_dir)
-            if fname.endswith('.png') or fname.endswith('.nii') or fname.endswith('.nii.gz')
-        ])
-        self.using_nifti = any(fname.endswith('.nii') or fname.endswith('.nii.gz') for fname in self.image_paths)
-
-    def load_nifti_slice(self, path, slice_index=0):
-        nii = nib.load(path)
-        data = nii.get_fdata()
-        if data.ndim == 3:
-            slice_data = data[:, :, slice_index]
-        elif data.ndim == 2:
-            slice_data = data
-        else:
-            raise ValueError("Unsupported NIfTI shape")
-        resized = resize(slice_data, (256, 256), preserve_range=True, anti_aliasing=True)
-        return resized.astype(np.float32) / np.max(resized)
-
-    def load_png(self, path):
-        img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
-        resized = cv2.resize(img, (256, 256)).astype(np.float32) / 255.0
-        return resized
-
-    def __len__(self):
-        return len(self.image_paths)
-
-    def __getitem__(self, idx):
-        if self.using_nifti:
-            img = self.load_nifti_slice(self.image_paths[idx])
-            mask = self.load_nifti_slice(self.mask_paths[idx])
-        else:
-            img = self.load_png(self.image_paths[idx])
-            mask = self.load_png(self.mask_paths[idx])
-        img = np.expand_dims(img, axis=0)
-        mask = np.expand_dims(mask, axis=0)
-        return torch.tensor(img, dtype=torch.float32), torch.tensor(mask, dtype=torch.float32)
