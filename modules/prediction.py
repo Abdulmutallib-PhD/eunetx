@@ -92,17 +92,15 @@ dataset = Dataset(image_dir, mask_dir)
 loader = DataLoader(dataset, batch_size=1, shuffle=True)
 
 # Prepare results directory and CSV file
+os.makedirs("csv", exist_ok=True)
 os.makedirs("results", exist_ok=True)
-csv_path = "csv/eunetx_epoch_loss.csv"
 
+report_path = "csv/system_performance_report.csv"
+csv_path = "csv/eunetx_epoch_loss.csv"
 # Initialize CSV file with headers
 with open(csv_path, mode='w', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(["Epoch", "Loss"])
-
-
-report_path = "csv/system_performance_report.csv"
-os.makedirs("csv", exist_ok=True)
 
 # Start overall timing
 start_time = time.time()
