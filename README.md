@@ -1,4 +1,4 @@
-# EUNetX: Automated Tumor Segmentation in CT, MRI and Ultrasound Medical Images
+# EUNetX: Automated Medical Image Segmentation in CT, MRI and Ultrasound Medical Images
 
 ## Overview
 
